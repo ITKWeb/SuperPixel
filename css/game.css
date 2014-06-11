@@ -49,6 +49,7 @@
 	top: 40%;
 	left: 150%;
 	opacity: 0;
+    text-align: center;
 	-webkit-animation: epilepsia 200ms infinite linear, appear 2s 1 linear; /* Chrome, Safari, Opera */
 	animation: epilepsia 200ms infinite linear, appear 2s 1 linear;
 }
@@ -69,18 +70,18 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
 }
 
-.replayPopup button {
+.replayPopup .link{
     background-color: #fff;
-    border: 3px solid #000;
-    border-radius: 3px;
-    font-family: 'silkscreen',sans-serif;
     font-size: 2em;
-    line-height: 2em;
-    margin-top: 10%;
+    padding: 10px 20px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    margin: 240px 20px 0;
 }
 
 /* Chrome, Safari, Opera */
@@ -111,8 +112,8 @@
 @-webkit-keyframes appear {
     0%   {left: 150%;opacity: 0;}
     5%	{opacity: 1;}
-    10%  {left: 50%;}
-    90% {left: 45%;opacity: 1;}
+    10%  {left: 45%;}
+    90% {left: 40%;opacity: 1;}
     95%	{opacity: 0;}
     100% {left: -50%;}
 }
@@ -120,8 +121,8 @@
 @keyframes appear {
     0%   {left: 150%;opacity: 0;}
     2%	{opacity: 1;}
-    5%  {left: 50%;}
-    95% {left: 45%;opacity: 1;}
+    5%  {left: 45%;}
+    95% {left: 40%;opacity: 1;}
     98%	{opacity: 0;}
     100% {left: -50%;}
 }

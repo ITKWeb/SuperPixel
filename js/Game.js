@@ -52,17 +52,25 @@ Game.prototype.loop = function loop() {
 
 Game.prototype.gameOver = function gameOver() {
   this.bryanIsInTheKitchen = true;
-  this.gameOver = new Headline("Game over, you win " + this.score + " $");
+  this.gameOver = new Headline("Game over<br />you won " + this.score + " $");
   clearInterval(this.scoreInterval);
   this.gameOver.start(this.map);
   this.fireOnGameOver();
   var gameOver = document.createElement('div');
   gameOver.classList.add('replayPopup');
-  var gameOverButton = document.createElement('button');
+  var gameOverButton = document.createElement('div');
+  gameOverButton.classList.add('link');
   gameOverButton.innerHTML = 'Replay!';
   gameOver.appendChild(gameOverButton);
   gameOverButton.onclick = function() {
     window.location.reload();
+  };
+  var gameOverButton = document.createElement('div');
+  gameOverButton.classList.add('link');
+  gameOverButton.innerHTML = 'Back';
+  gameOver.appendChild(gameOverButton);
+  gameOverButton.onclick = function() {
+    window.location = "index.html";
   };
   setTimeout(function() {
     document.body.appendChild(gameOver);
