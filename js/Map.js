@@ -43,3 +43,7 @@ Map.prototype.removeChild = function removeChild(htmlElement, element) {
   }
   new Wall().start(this);
 };
+
+Map.prototype.getHtmlElement = function (){
+  return this.htmlElement;
+}

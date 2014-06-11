@@ -10,7 +10,8 @@ Pixel.prototype.start = function start(map) {
 	var that = this;  
   	map.addChild(this.htmlElement);
 
-	window.onmousemove = function(e){
+	map.getHtmlElement().onmousemove = function(e){
+
 	    that.MovePixelAss(e.clientX,e.clientY);
 	}
 

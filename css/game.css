@@ -2,7 +2,6 @@
 	position: relative;
 	width: 100%;
 	height: 500px;
-	padding: 100px 0 0;
 }
 
 .map {
@@ -10,6 +9,8 @@
 	width: 100%;
 	height: 100%;
 	background-color: #eee;
+	cursor: none;
+	overflow: hidden;
 }
 
 .pixel {
@@ -19,4 +20,5 @@
 	left: 100px;
 	top: 50%;
 	background-color: #000;
+	transition:left 50ms linear,top 50ms linear;
 }
