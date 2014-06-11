@@ -20,7 +20,7 @@ function Wall(wall) {
   this.htmlElement.style.height = this.height+"px";
   this.htmlElement.style.top = this.y+"px";
 
-  this.yMove = -1;
+  this.yMove = Math.random() > 0.5 ? 1 : -1;
 };
 
 Wall.prototype.start = function start(map) {

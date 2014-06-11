@@ -4,27 +4,37 @@ function Map() {
   this.elementsLoop = [];
   this.walls = [];
   this.callbacksOnWallAdded = [];
+  this.nbLoop = 0;
 };
 
 Map.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
-  var that = this;
-  this.intervalWall = setInterval(function() {
-    if(Math.random() > 0.8) {
-      var gabarit = new Wall().whereIsTheKitchen();
-      gabarit.y = 0;
-      gabarit.height = 100;
-      that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
-      gabarit.y = 400;
-      gabarit.height = 50;
-      that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
-      gabarit.y = 80;
-      gabarit.height = 100;
-      that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
-    } else {
-      that.fireOnWallAdded(that.addWall(new Wall()));
-    }
-  }, Math.floor((Math.random() * 5000) + 1000));
+  this.nbLoop = 0;
+  this.checkIntervalAndWall();
+};
+
+Map.prototype.checkIntervalAndWall = function() {
+  if(this.intervalWall === undefined) {
+    var that = this;
+    this.intervalWall = setInterval(function() {
+      clearInterval(that.intervalWall);
+      that.intervalWall = undefined;
+      if(Math.random() > 0.8) {
+        var gabarit = new Wall().whereIsTheKitchen();
+        gabarit.y = 0;
+        gabarit.height = 100;
+        that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+        gabarit.y = 400;
+        gabarit.height = 50;
+        that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+        gabarit.y = 80;
+        gabarit.height = 100;
+        that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+      } else {
+        that.fireOnWallAdded(that.addWall(new Wall()));
+      }
+    }, Math.floor((Math.random() * (5000 - (0.1 * that.nbLoop))) + 500));
+  }
 };
 
 Map.prototype.addWall = function addWall(wall) {
@@ -34,11 +44,13 @@ Map.prototype.addWall = function addWall(wall) {
 };
 
 Map.prototype.loop = function loop() {
+  this.nbLoop = this.nbLoop + 1;
   for(var i=0, len=this.elementsLoop.length; i<len; i++) {
     if(this.elementsLoop[i] !== undefined) {
       this.elementsLoop[i].loop();
     }
   }
+  this.checkIntervalAndWall();
 };
 
 Map.prototype.addChild = function addChild(htmlElement, element) {
