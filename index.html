@@ -16,15 +16,19 @@
 	<section>
 		<nav>
 			<ul id="navigation">
-				<li><a href="game.html" class="active">1 Player</a></li>
-				<li><a href="game-multi.html" class="active">MultiPlayer</a></li>
-				<li><a href="options.html" class="active">Options</a></li>
-				<li><a href="credits.html" class="active">Credits</a></li>
+				<li><a href="game.html">1 Player</a></li>
+				<li><a href="game-multi.html" id="multiplayerbutton">MultiPlayer</a></li>
+				<li><a href="options.html">Options</a></li>
+				<li><a href="credits.html">Credits</a></li>
 			</ul>
 		</nav>
 	</section>
-	<footer>
-
-	</footer>
+	<script type="text/javascript">
+	window.onload = function (){
+		    if(window.location.href.indexOf("github") > -1) {
+		       document.getElementById("multiplayerbutton").classList.add("hidden");
+		    }
+		};
+	</script>
 </body>
 </html>

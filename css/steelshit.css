@@ -74,7 +74,9 @@ section{
 .link:focus{
 	color: #e51c20;
 }
-
+.hidden{
+    display: none !important;
+}
 
 /*------------------------------------*\
     INDEX
