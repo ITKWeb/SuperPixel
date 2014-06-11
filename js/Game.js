@@ -62,6 +62,10 @@ Game.prototype.getPixel = function getPixel() {
   return this.pixel;
 };
 
+Game.prototype.getMap = function getMap() {
+  return this.map;
+};
+
 window.onload = function() {
   window.game = new Game();
   window.game.start(document.getElementsByTagName('body')[0]);

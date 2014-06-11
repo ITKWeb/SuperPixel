@@ -3,17 +3,21 @@ function Map() {
   this.htmlElement.classList.add('map');
   this.elementsLoop = [];
   this.walls = [];
+  this.callbacksOnWallAdded = [];
 };
 
 Map.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
   var that = this;
-  setInterval(function() {
-    var wall = new Wall();
-    wall.start(that);
-    that.walls.push(wall);
+  this.intervalWall = setInterval(function() {
+    that.fireOnWallAdded(that.addWall(new Wall()));
   }, Math.floor((Math.random() * 5000) + 1000));
+};
 
+Map.prototype.addWall = function addWall(wall) {
+  wall.start(this);
+  this.walls.push(wall);
+  return wall;
 };
 
 Map.prototype.loop = function loop() {
@@ -42,10 +46,29 @@ Map.prototype.removeChild = function removeChild(htmlElement, element) {
   }
 };
 
-Map.prototype.getHtmlElement = function (){
+Map.prototype.getHtmlElement = function getHtmlElement() {
   return this.htmlElement;
-}
+};
 
-Map.prototype.getWalls = function (){
+Map.prototype.getWalls = function getWalls() {
   return this.walls;
-}
+};
+
+Map.prototype.clearWalls = function clearWalls() {
+  clearInterval(this.intervalWall);
+  this.elementsLoop.forEach(function(element) {
+    this.htmlElement.removeChild(element);
+  });
+  this.elementsLoop = [];
+  this.walls = [];
+};
+
+Map.prototype.onWallAdded = function onWallAdded(cb) {
+  this.callbacksOnWallAdded.push(cb);
+};
+
+Map.prototype.fireOnWallAdded = function fireOnWallAdded(wall) {
+  for(var i=0, len=this.callbacksOnWallAdded.length; i<len; i++) {
+    this.callbacksOnWallAdded[i](wall);
+  }
+};

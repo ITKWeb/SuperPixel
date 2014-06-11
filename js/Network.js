@@ -17,6 +17,18 @@ function Network() {
       if(that.other[cmd.opt.id] !== undefined) {
         that.other[cmd.opt.id].MovePixelAss(cmd.opt.x, cmd.opt.y);
       }
+    } else if(cmd.method === 'notfirst') {
+      console.log('I wait wall !');
+      window.game.getMap().clearWalls();
+    } else if(cmd.method === 'first') {
+      console.log('I am first !');
+      window.game.getMap().onWallAdded(function(wall) {
+        console.log('I am first and i send wall !');
+        that.send('newwall', 'room', wall.whereIsTheKitchen());
+      });
+    } else if(cmd.method === 'newwall') {
+      console.log(cmd.opt);
+      window.game.getMap().addWall(new Wall(cmd.opt));
     }
   };
 };
