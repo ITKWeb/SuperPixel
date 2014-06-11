@@ -32,7 +32,7 @@
 
 
 .pixel.noHuman {
-    background-color: #888;
+    opacity: 0.4;
 }
 
 .wall {
