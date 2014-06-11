@@ -24,10 +24,19 @@ Game.prototype.loop = function loop() {
   var nb = 0;
   var that = this;
   window.requestAnimFrame(function() {
+    that.collision();
     that.map.loop();
     that.loop();
   });
 };
+
+
+
+Game.prototype.collision = function collision() {
+  var pos = this.pixel.getPosition();
+  
+};
+
 
 window.onload = function() {
   window.game = new Game();

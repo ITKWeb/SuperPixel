@@ -2,6 +2,7 @@ function Map() {
   this.htmlElement = document.createElement('div');
   this.htmlElement.classList.add('map');
   this.elementsLoop = [];
+  this.walls = [];
 };
 
 Map.prototype.start = function start(htmlElement) {
@@ -9,7 +10,9 @@ Map.prototype.start = function start(htmlElement) {
   new Wall().start(this);
   var that = this;
   setInterval(function() {
-    new Wall().start(that);
+    var wall = new Wall();
+    wall.start(that);
+    that.walls.push(wall);
   }, Math.floor((Math.random() * 5000) + 1000));
 
 };
@@ -35,10 +38,15 @@ Map.prototype.removeChild = function removeChild(htmlElement, element) {
     if(this.elementsLoop[i] === element) {
       this.elementsLoop.splice(i, 1);
       element = undefined;
+      this.walls.splice(i,1);
     }
   }
 };
 
 Map.prototype.getHtmlElement = function (){
   return this.htmlElement;
+}
+
+Map.prototype.getWalls = function (){
+  return this.walls;
 }

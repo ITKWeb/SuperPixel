@@ -16,8 +16,6 @@
 .pixel {
 	position: absolute;
 	width: 10px;
-	height: 10px;
-	left: 100px;
 	top: 50%;
 	background-color: #000;
 	/*transition:left 50ms linear,top 50ms linear;*/
