@@ -16,4 +16,4 @@ You have to avoid the upcoming blocks and try to survive as long as you can !
 
 #Credits
 
-@manland && @undless
+[manland](https://github.com/manland) && [undless](https://github.com/undless)
