@@ -57,6 +57,26 @@
     font-size: 2em;
 }
 
+.replayPopup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.replayPopup button {
+    background-color: #fff;
+    border: 3px solid #000;
+    border-radius: 3px;
+    font-family: 'silkscreen',sans-serif;
+    font-size: 2em;
+    line-height: 2em;
+    margin-top: 10%;
+}
+
 /* Chrome, Safari, Opera */
 @-webkit-keyframes epilepsia {
     0%   {color: red;}

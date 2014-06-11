@@ -3,6 +3,7 @@ function Game() {
   this.htmlElement.classList.add('game');
   this.bryanIsInTheKitchen = false;
   this.score = 0;
+  this.callbacksGameOver = [];
 };
 
 Game.prototype.start = function start(htmlElement) {
@@ -46,9 +47,22 @@ Game.prototype.loop = function loop() {
 };
 
 Game.prototype.gameOver = function gameOver() {
+  this.bryanIsInTheKitchen = true;
   this.gameOver = new Headline("Game over, you win " + this.score + " $");
   clearInterval(this.scoreInterval);
   this.gameOver.start(this.map);
+  this.fireOnGameOver();
+  var gameOver = document.createElement('div');
+  gameOver.classList.add('replayPopup');
+  var gameOverButton = document.createElement('button');
+  gameOverButton.innerHTML = 'Replay!';
+  gameOver.appendChild(gameOverButton);
+  gameOverButton.onclick = function() {
+    window.location.reload();
+  };
+  setTimeout(function() {
+    document.body.appendChild(gameOver);
+  }, 2500);
 };
 
 Game.prototype.collision = function collision() {
@@ -75,6 +89,16 @@ Game.prototype.getPixel = function getPixel() {
 
 Game.prototype.getMap = function getMap() {
   return this.map;
+};
+
+Game.prototype.onGameOver = function onWallAdded(cb) {
+  this.callbacksGameOver.push(cb);
+};
+
+Game.prototype.fireOnGameOver = function fireOnWallAdded() {
+  for(var i=0, len=this.callbacksGameOver.length; i<len; i++) {
+    this.callbacksGameOver[i]();
+  }
 };
 
 window.onload = function() {

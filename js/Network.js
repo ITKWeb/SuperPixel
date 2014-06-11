@@ -8,6 +8,9 @@ function Network() {
     window.game.getPixel().onMove(function(x, y) {
       that.send('move', 'room', {id: that.id, x: x, y: y});
     });
+    window.game.onGameOver(function() {
+      that.send('gameover', 'room', {id: that.id});
+    });
   };
   this.socket.onmessage = function(e) {
     var cmd = JSON.parse(e.data);
@@ -23,12 +26,12 @@ function Network() {
     } else if(cmd.method === 'first') {
       console.log('I am first !');
       window.game.getMap().onWallAdded(function(wall) {
-        console.log('I am first and i send wall !');
         that.send('newwall', 'room', wall.whereIsTheKitchen());
       });
     } else if(cmd.method === 'newwall') {
-      console.log(cmd.opt);
       window.game.getMap().addWall(new Wall(cmd.opt));
+    } else if(cmd.method === 'gameover') {
+      window.game.gameOver();
     }
   };
 };

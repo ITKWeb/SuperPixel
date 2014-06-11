@@ -28,6 +28,9 @@ wss.on('connection', function(ws) {
             }
     		ws.SPUniqueId = cmd.opt.id;
     		room[cmd.room].push(ws);
+        } else if(cmd.method === 'gameover') {
+            send(cmd, message);
+            room[cmd.room] = [];
     	} else {
     		send(cmd, message);
     	}
