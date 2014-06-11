@@ -16,7 +16,7 @@ Game.prototype.loop = function loop() {
   var nb = 0;
   var that = this;
   window.requestAnimFrame(function() {
-    console.log(nb);
+    that.map.loop();
     that.loop();
   });
 };
