@@ -34,7 +34,7 @@ Pixel.prototype.MovePixelAss = function move(x,y) {
 	this.y = y;
 }
 
-Pixel.prototype.getPosition = function getPosition() {
+Pixel.prototype.whereIsBryan = function whereIsBryan() {
 	return {
 		x : this.x,
 		y : this.y,

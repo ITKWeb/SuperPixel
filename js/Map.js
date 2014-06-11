@@ -7,7 +7,6 @@ function Map() {
 
 Map.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
-  new Wall().start(this);
   var that = this;
   setInterval(function() {
     var wall = new Wall();

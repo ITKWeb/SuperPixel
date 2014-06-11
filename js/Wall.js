@@ -27,3 +27,13 @@ Wall.prototype.loop = function loop() {
   }
   this.htmlElement.style.left = this.x + 'px';
 };
+
+
+Wall.prototype.whereIsTheKitchen = function whereIsTheKitchen() {
+  return {
+    x : this.x,
+    y : this.y,
+    w : this.width,
+    h : this.height
+  };
+}
