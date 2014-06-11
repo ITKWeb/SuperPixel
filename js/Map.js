@@ -4,7 +4,9 @@ function Map() {
 };
 
 Map.prototype.start = function start(htmlElement) {
-
   htmlElement.appendChild(this.htmlElement);
+};
 
+Map.prototype.addChild = function addChild(htmlElement) {
+	this.htmlElement.appendChild(htmlElement);
 };
