@@ -2,6 +2,7 @@ function Game() {
   this.htmlElement = document.createElement('div');
   this.htmlElement.classList.add('game');
   this.bryanIsInTheKitchen = false;
+  this.score = 0;
 };
 
 Game.prototype.start = function start(htmlElement) {
@@ -12,7 +13,16 @@ Game.prototype.start = function start(htmlElement) {
   this.pixel.start(this.map);
   this.titre = new Headline ("START");
   this.titre.start(this.map);
+  this.score = 0;
   this.loop();
+  var that = this;
+  this.scoreHtmlElement = document.createElement('div');
+  this.scoreHtmlElement.classList.add('score');
+  this.scoreInterval = setInterval(function() {
+    that.score = that.score + 1;
+    that.scoreHtmlElement.innerHTML = that.score + ' $';
+  }, 1000);
+  htmlElement.appendChild(this.scoreHtmlElement);
 };
 
 Game.prototype.addOtherPixel = function addOtherPixel() {
@@ -30,13 +40,14 @@ Game.prototype.loop = function loop() {
     if(!that.bryanIsInTheKitchen){
       that.loop();
     }else{
-      that.gameOver();;
+      that.gameOver();
     }
   });
 };
 
 Game.prototype.gameOver = function gameOver() {
-  this.gameOver = new Headline("Game over");
+  this.gameOver = new Headline("Game over, you win " + this.score + " $");
+  clearInterval(this.scoreInterval);
   this.gameOver.start(this.map);
 };
 

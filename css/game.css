@@ -44,6 +44,10 @@
 	animation: epilepsia 200ms infinite linear, appear 2s 1 linear;
 }
 
+.score {
+    font-size: 2em;
+}
+
 /* Chrome, Safari, Opera */
 @-webkit-keyframes epilepsia {
     0%   {color: red;}
