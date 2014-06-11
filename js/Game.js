@@ -77,7 +77,6 @@ Game.prototype.collision = function collision() {
         && (bryan.y+bryan.h) > kitchen.y
         && bryan.y < (kitchen.y+kitchen.h)
       ){
-      //console.log("GAME OVER");
       this.bryanIsInTheKitchen = true;
     }
   };
@@ -105,3 +104,4 @@ window.onload = function() {
   window.game = new Game();
   window.game.start(document.getElementsByTagName('body')[0]);
 };
+
