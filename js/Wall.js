@@ -5,7 +5,7 @@ function Wall() {
   this.htmlElement.classList.add('wall');
 
   this.x = TAILLE_MAX_WIDTH + 100;
-  this.y =  Math.floor((Math.random() * 100));
+  this.y =  Math.floor((Math.random() * 400));
 
   this.width = Math.floor((Math.random() * 100) + 50);
   this.height = Math.floor((Math.random() * 300) + 50);
