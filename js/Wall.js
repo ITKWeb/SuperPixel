@@ -19,6 +19,8 @@ function Wall(wall) {
   this.htmlElement.style.width = this.width+"px";
   this.htmlElement.style.height = this.height+"px";
   this.htmlElement.style.top = this.y+"px";
+
+  this.yMove = -1;
 };
 
 Wall.prototype.start = function start(map) {
@@ -28,10 +30,17 @@ Wall.prototype.start = function start(map) {
 
 Wall.prototype.loop = function loop() {
   this.x = this.x - 1;
+  this.y = this.y - this.yMove;
   if(this.x === (this.width * -1)) {
     this.map.removeChild(this.htmlElement, this);
   }
+  if(this.y + this.height >= 500 && this.yMove === -1) {
+    this.yMove = this.yMove * -1;
+  } else if(this.y < 0) {
+    this.yMove = this.yMove * -1;
+  }
   this.htmlElement.style.left = this.x + 'px';
+  this.htmlElement.style.top = this.y + 'px';
 };
 
 

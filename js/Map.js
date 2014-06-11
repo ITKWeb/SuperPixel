@@ -10,7 +10,20 @@ Map.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
   var that = this;
   this.intervalWall = setInterval(function() {
-    that.fireOnWallAdded(that.addWall(new Wall()));
+    if(Math.random() > 0.8) {
+      var gabarit = new Wall().whereIsTheKitchen();
+      gabarit.y = 0;
+      gabarit.height = 100;
+      that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+      gabarit.y = 400;
+      gabarit.height = 50;
+      that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+      gabarit.y = 80;
+      gabarit.height = 100;
+      that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+    } else {
+      that.fireOnWallAdded(that.addWall(new Wall()));
+    }
   }, Math.floor((Math.random() * 5000) + 1000));
 };
 
