@@ -5,9 +5,7 @@ var room = {};
 
 var send = function send(cmd, message) {
 	for(var i=0, len=room[cmd.room].length; i<len; i++) {
-		if(room[cmd.room][i].isClose !== true) {
-			room[cmd.room][i].send(message);
-		}
+		room[cmd.room][i].send(message);
 	}
 };
 
@@ -18,17 +16,25 @@ wss.on('connection', function(ws) {
     		room[cmd.room] = room[cmd.room] || [];
     		send(cmd, message);
     		room[cmd.room].forEach(function(player) {
-    			if(player.isClose !== true) {
-    				ws.send(message);
-    			}
+				ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {id: player.SPUniqueId}}));
     		});
+    		ws.SPUniqueId = cmd.opt.id;
     		room[cmd.room].push(ws);
     	} else if(cmd.method === 'move') {
     		send(cmd, message);
     	}
-        console.log('received: %s', message);
+        //console.log('received: %s', message);
     });
     ws.on('close', function(message) {
     	ws.isClose = true;
+    	var found = false;
+    	for(var r in room) {
+	    	for(var i=0, len=room[r].length; i<len && found === false; i++) {
+				if(room[r][i] === ws) {
+					found = true;
+					room[r].splice(i, 1);
+				}
+			}
+		}
     });
 });

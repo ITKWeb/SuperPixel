@@ -3,6 +3,9 @@ function Pixel(isHuman) {
 	this.htmlElement.id = "superpixel";
 	this.htmlElement.classList.add('pixel');
 	this.isHuman = isHuman;
+
+	this.callbacksOnMove = [];
+
 	this.MovePixelAss(100,100);
 	this.width = 10;
 	this.height = 10;
@@ -22,7 +25,7 @@ Pixel.prototype.start = function start(map) {
   	if(this.isHuman !== false) {
 
 		map.getHtmlElement().onmousemove = function(e) {
-		    that.MovePixelAss(e.clientX,e.clientY);
+		    that.MovePixelAss(e.clientX, e.clientY);
 		};
 	}
 };
@@ -32,7 +35,8 @@ Pixel.prototype.MovePixelAss = function move(x,y) {
 	this.htmlElement.style.top = y+"px";
 	this.x = x;
 	this.y = y;
-}
+	this.fireOnMove(x, y);
+};
 
 Pixel.prototype.whereIsBryan = function whereIsBryan() {
 	return {
@@ -41,4 +45,14 @@ Pixel.prototype.whereIsBryan = function whereIsBryan() {
 		w : this.width,
 		h : this.height
 	};
-}
+};
+
+Pixel.prototype.onMove = function onMove(cb) {
+	this.callbacksOnMove.push(cb);
+};
+
+Pixel.prototype.fireOnMove = function fireOnMove(x, y) {
+	for(var i=0, len=this.callbacksOnMove.length; i<len; i++) {
+		this.callbacksOnMove[i](x, y);
+	}
+};

@@ -35,7 +35,6 @@ Game.prototype.loop = function loop() {
   });
 };
 
-
 Game.prototype.gameOver = function gameOver() {
   this.gameOver = new Headline("Game over");
   this.gameOver.start(this.map);
@@ -59,6 +58,9 @@ Game.prototype.collision = function collision() {
   };
 };
 
+Game.prototype.getPixel = function getPixel() {
+  return this.pixel;
+};
 
 window.onload = function() {
   window.game = new Game();
