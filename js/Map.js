@@ -8,21 +8,17 @@ Map.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
   new Wall().start(this);
   var that = this;
-  setTimeout(function() {
+  setInterval(function() {
     new Wall().start(that);
-    setTimeout(function() {
-      new Wall().start(that);
-      setTimeout(function() {
-        new Wall().start(that);
-      }, 2000);
-    }, 2000);
   }, 2000);
 
 };
 
-Map.prototype.loop = function loop(htmlElement) {
+Map.prototype.loop = function loop() {
   for(var i=0, len=this.elementsLoop.length; i<len; i++) {
-    this.elementsLoop[i].loop();
+    if(this.elementsLoop[i] !== undefined) {
+      this.elementsLoop[i].loop();
+    }
   }
 };
 
@@ -41,7 +37,6 @@ Map.prototype.removeChild = function removeChild(htmlElement, element) {
       element = undefined;
     }
   }
-  new Wall().start(this);
 };
 
 Map.prototype.getHtmlElement = function (){

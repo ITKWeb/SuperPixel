@@ -1,13 +1,8 @@
-var TAILLE_MAX_WIDTH = 300;
+var TAILLE_MAX_WIDTH = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
 
 function Wall() {
   this.htmlElement = document.createElement('div');
   this.htmlElement.classList.add('wall');
-  this.htmlElement.style.position = 'absolute';
-  this.htmlElement.style.top = 0;
-  this.htmlElement.style.width = 100 + 'px';
-  this.htmlElement.style.height = 50 + 'px';
-  this.htmlElement.style.backgroundColor = 'orange';
   this.x = TAILLE_MAX_WIDTH + 100;
   this.width = 100;
 };
