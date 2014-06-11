@@ -31,3 +31,58 @@
   	height: 50px;
   	background-color: orange;
 }
+
+.headline{
+	position: absolute;
+	font-size: 3em;
+	font-weight: bold;
+	color: #000;
+	top: 40%;
+	left: 150%;
+	opacity: 0;
+	-webkit-animation: epilepsia 200ms infinite linear, appear 2s 1 linear; /* Chrome, Safari, Opera */
+	animation: epilepsia 200ms infinite linear, appear 2s 1 linear;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes epilepsia {
+    0%   {color: red;}
+    24%   {color: red;}
+    25%  {color: yellow;}
+    49%  {color: yellow;}
+    50%  {color: blue;}
+    74%  {color: blue;}
+    75% {color: green;}
+    99% {color: green;}
+    100% {color: black;}
+}
+/* Standard syntax */
+@keyframes epilepsia {
+    0%   {color: red;}
+    24%   {color: red;}
+    25%  {color: yellow;}
+    49%  {color: yellow;}
+    50%  {color: blue;}
+    74%  {color: blue;}
+    75% {color: green;}
+    99% {color: green;}
+    100% {color: black;}
+} 
+/* Chrome, Safari, Opera */
+@-webkit-keyframes appear {
+    0%   {left: 150%;opacity: 0;}
+    5%	{opacity: 1;}
+    10%  {left: 50%;}
+    90% {left: 45%;opacity: 1;}
+    95%	{opacity: 0;}
+    100% {left: -50%;}
+}
+/* Standard syntax */
+@keyframes appear {
+    0%   {left: 150%;opacity: 0;}
+    2%	{opacity: 1;}
+    5%  {left: 50%;}
+    95% {left: 45%;opacity: 1;}
+    98%	{opacity: 0;}
+    100% {left: -50%;}
+}
