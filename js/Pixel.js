@@ -13,6 +13,8 @@ function Pixel(isHuman) {
 	this.htmlElement.style.width = this.width+"px";
 	this.htmlElement.style.height = this.height+"px";
 
+	this.scoreFactor = 0;
+
 	if(isHuman === false) {
 		this.htmlElement.classList.add('noHuman');
 	}
@@ -35,6 +37,11 @@ Pixel.prototype.MovePixelAss = function move(x,y) {
 	this.htmlElement.style.top = y+"px";
 	this.x = x;
 	this.y = y;
+	if(this.x > TAILLE_MAX_WIDTH - 50) {
+		this.scoreFactor = 2;
+	} else {
+		this.scoreFactor = 0;
+	}
 	this.fireOnMove(x, y);
 };
 
@@ -55,4 +62,8 @@ Pixel.prototype.fireOnMove = function fireOnMove(x, y) {
 	for(var i=0, len=this.callbacksOnMove.length; i<len; i++) {
 		this.callbacksOnMove[i](x, y);
 	}
+};
+
+Pixel.prototype.getSoreFactor = function getSoreFactor() {
+	return this.scoreFactor;
 };

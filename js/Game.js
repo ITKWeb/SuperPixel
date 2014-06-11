@@ -20,7 +20,7 @@ Game.prototype.start = function start(htmlElement) {
   this.scoreHtmlElement = document.createElement('div');
   this.scoreHtmlElement.classList.add('score');
   this.scoreInterval = setInterval(function() {
-    that.score = that.score + 1;
+    that.score = that.score + 1 + (1 * that.pixel.getSoreFactor());
     that.scoreHtmlElement.innerHTML = that.score + '<span>$</span>';
   }, 500);
   htmlElement.appendChild(this.scoreHtmlElement);
