@@ -22,7 +22,7 @@ Game.prototype.start = function start(htmlElement) {
   this.scoreInterval = setInterval(function() {
     that.score = that.score + 1;
     that.scoreHtmlElement.innerHTML = that.score + '<span>$</span>';
-  }, 1000);
+  }, 500);
   htmlElement.appendChild(this.scoreHtmlElement);
 };
 
