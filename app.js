@@ -21,6 +21,7 @@ wss.on('connection', function(ws) {
     		room[cmd.room].forEach(function(player) {
 				ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {id: player.SPUniqueId}}));
     		});
+            console.log(room[cmd.room].length);
             if(room[cmd.room].length > 0) {//not first player
                 ws.send(JSON.stringify({method: 'notfirst', room: cmd.room}));
             } else {

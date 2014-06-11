@@ -26,7 +26,7 @@ Game.prototype.start = function start(htmlElement) {
   }, 500);
   htmlElement.appendChild(this.scoreHtmlElement);
   this.nbPlayerHtmlElement = document.createElement('div');
-  this.nbPlayerHtmlElement.classList.add('nbPlayer');
+  this.nbPlayerHtmlElement.classList.add('score');
   htmlElement.appendChild(this.nbPlayerHtmlElement);
 };
 
