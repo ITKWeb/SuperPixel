@@ -1,0 +1,17 @@
+.game {
+	width: 500px;
+	height: 500px;
+	background-color: red;
+}
+
+.map {
+	width: 250px;
+	height: 250px;
+	background-color: green;
+}
+
+.pixel {
+	width: 10px;
+	height: 10px;
+	background-color: blue;
+}

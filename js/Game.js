@@ -1,24 +1,31 @@
 function Game() {
-
+  this.htmlElement = document.createElement('div');
+  this.htmlElement.classList.add('game');
 };
 
-Game.prototype.start = function start() {
+Game.prototype.start = function start(htmlElement) {
 
-	this.loop();
+  htmlElement.appendChild(this.htmlElement);
+  this.map = new Map();
+  this.map.start(this.htmlElement);
+  this.pixel = new Pixel();
+  this.pixel.start(this.htmlElement);
+  this.loop();
 
 };
 
 Game.prototype.loop = function loop() {
 
-	var nb = 0;
-	var that = this;
-	window.requestAnimFrame(function() {
-		console.log(nb);
-		that.loop();
-	});
+  var nb = 0;
+  var that = this;
+  window.requestAnimFrame(function() {
+    console.log(nb);
+    that.loop();
+  });
 
 };
 
-var game = new Game();
-
-game.start();
+window.onload = function() {
+  var game = new Game();
+  game.start(document.getElementsByTagName('body')[0]);
+};
