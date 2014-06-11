@@ -1,8 +1,8 @@
-function Headline() {
+function Headline(texte) {
 	this.htmlElement = document.createElement('div');
 	this.htmlElement.classList.add('headline');
 	this.htmlElement.classList.add('specialfont');
-	this.htmlElement.innerHTML = "START";
+	this.htmlElement.innerHTML = texte;
 };
 
 

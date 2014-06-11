@@ -9,7 +9,7 @@ Game.prototype.start = function start(htmlElement) {
   this.map.start(this.htmlElement);
   this.pixel = new Pixel();
   this.pixel.start(this.map);
-  this.titre = new Headline ();
+  this.titre = new Headline ("START");
   this.titre.start(this.map);
   this.loop();
 };
