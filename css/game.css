@@ -23,6 +23,11 @@
 	transition:left 50ms linear,top 50ms linear;
 }
 
+
+.pixel.noHuman {
+    background-color: #888;
+}
+
 .wall {
 	position: absolute;
 	top: 0;

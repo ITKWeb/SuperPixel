@@ -14,6 +14,12 @@ Game.prototype.start = function start(htmlElement) {
   this.loop();
 };
 
+Game.prototype.addOtherPixel = function addOtherPixel() {
+  var pixel = new Pixel(false);
+  pixel.start(this.map);
+  return pixel;
+};
+
 Game.prototype.loop = function loop() {
   var nb = 0;
   var that = this;
@@ -24,6 +30,6 @@ Game.prototype.loop = function loop() {
 };
 
 window.onload = function() {
-  var game = new Game();
-  game.start(document.getElementsByTagName('body')[0]);
+  window.game = new Game();
+  window.game.start(document.getElementsByTagName('body')[0]);
 };
