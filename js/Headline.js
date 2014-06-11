@@ -9,4 +9,8 @@ function Headline(texte) {
 
 Headline.prototype.start = function start(map) {
   	map.addChild(this.htmlElement);
+  	var that = this;
+  	setTimeout(function(){
+  		map.removeChild(that.htmlElement);
+  	}, 2000);
 };

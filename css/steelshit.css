@@ -82,12 +82,90 @@ section{
 
 .home{
 	background: #fff;
-	padding: 100px 0 0;
+	padding: 80px 0 0;
 	text-align: center;
 }
+    .logo{
+        display: inline-block;
+        left: -10px;
+        font-size: 1.8em;
+        text-decoration: none;
+        color: #1d1d1b;
+        position: relative;
+        padding: 80px 0 0;
+        border-bottom: solid 8px #d4d4d4;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+        .logo img{
+            position: absolute;
+            top: 20px;
+            left:10px;
+            right: 0;
+            margin: 0 auto;
+        }
+
+    #homepixel{
+        display: inline-block;
+        position: relative;
+        width: 10px;
+        height: 10px;
+        left: -10px;
+        top: 0px;
+        background:#000;
+        -webkit-animation: SuperPixelFloating 2s infinite linear,SuperPixelFloatingB 3s infinite linear; /* Chrome, Safari, Opera */
+        animation: SuperPixelFloating 2s infinite linear,SuperPixelFloatingB 3s infinite linear;
+    }
+
+        /* Chrome, Safari, Opera */
+        @-webkit-keyframes SuperPixelFloating {
+            0%   {top:0px;}
+            50% {top: 5px;}
+            100% {top: 0px;}
+        }
+        /* Standard syntax */
+        @keyframes SuperPixelFloating {
+            0%   {top:0px;}
+            50% {top: 5px;}
+            100% {top: 0px;}
+        } 
+        /* Chrome, Safari, Opera */
+        @-webkit-keyframes SuperPixelFloatingB {
+            0%   {left:-10px;}
+            50% {left: -5px;}
+            100% {left:-10px;}
+        }
+        /* Standard syntax */
+        @keyframes SuperPixelFloatingB {
+            0%   {left:-10px;}
+            50% {left: -5px;}
+            100% {left:-10px;}
+        } 
+
+        #homepixel::before{
+            content: "";
+            position: absolute;
+            background:url(../images/SuperPixelFlying.gif);
+            top: -5px;
+            left: -19px;
+            width: 41px;
+            height: 12px;
+        }
+
+        #homepixel:hover::after{
+            content: "Je suis Super Pixel !";
+            color: #000;
+            position: absolute;
+            right: -70px;
+            top: -30px;
+            font-size: 10px;
+            width: auto;
+        }
 
 #navigation{
 	padding: 20px 0;
+    width: 400px;
+    margin: 0 auto;
 }
 #navigation a{
 	display: block;
@@ -110,3 +188,4 @@ section{
 #navigation a:focus::after{
 	content :" <"
 }
+

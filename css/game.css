@@ -20,6 +20,15 @@
 	background-color: #000;
 	/*transition:left 50ms linear,top 50ms linear;*/
 }
+.pixel::before{
+    content: "";
+    position: absolute;
+    background:url(../images/SuperPixelFlying.gif);
+    top: -5px;
+    left: -19px;
+    width: 41px;
+    height: 12px;
+}
 
 
 .pixel.noHuman {
