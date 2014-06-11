@@ -4,6 +4,7 @@ function Game() {
   this.bryanIsInTheKitchen = false;
   this.score = 0;
   this.callbacksGameOver = [];
+  this.nbPlayer = 1;
 };
 
 Game.prototype.start = function start(htmlElement) {
@@ -24,6 +25,9 @@ Game.prototype.start = function start(htmlElement) {
     that.scoreHtmlElement.innerHTML = that.score + '<span>$</span>';
   }, 500);
   htmlElement.appendChild(this.scoreHtmlElement);
+  this.nbPlayerHtmlElement = document.createElement('div');
+  this.nbPlayerHtmlElement.classList.add('nbPlayer');
+  htmlElement.appendChild(this.nbPlayerHtmlElement);
 };
 
 Game.prototype.addOtherPixel = function addOtherPixel() {
@@ -98,6 +102,11 @@ Game.prototype.fireOnGameOver = function fireOnWallAdded() {
   for(var i=0, len=this.callbacksGameOver.length; i<len; i++) {
     this.callbacksGameOver[i]();
   }
+};
+
+Game.prototype.nbPlayerPlusPlus = function nbPlayerPlusPlus() {
+  this.nbPlayer = this.nbPlayer + 1;
+  this.nbPlayerHtmlElement.innerHTML = this.nbPlayer + '<span>players</span>';
 };
 
 window.onload = function() {

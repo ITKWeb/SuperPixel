@@ -16,6 +16,7 @@ function Network() {
     var cmd = JSON.parse(e.data);
     if(cmd.method === 'enter' && cmd.opt.id !== that.id) {
       that.other[cmd.opt.id] = window.game.addOtherPixel();
+      window.game.nbPlayerPlusPlus();
     } else if(cmd.method === 'move') {
       if(that.other[cmd.opt.id] !== undefined) {
         that.other[cmd.opt.id].MovePixelAss(cmd.opt.x, cmd.opt.y);
