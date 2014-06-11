@@ -10,7 +10,7 @@ Map.prototype.start = function start(htmlElement) {
   var that = this;
   setInterval(function() {
     new Wall().start(that);
-  }, 2000);
+  }, Math.floor((Math.random() * 5000) + 1000));
 
 };
 

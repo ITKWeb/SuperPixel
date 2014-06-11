@@ -20,7 +20,7 @@
 	left: 100px;
 	top: 50%;
 	background-color: #000;
-	transition:left 50ms linear,top 50ms linear;
+	/*transition:left 50ms linear,top 50ms linear;*/
 }
 
 
@@ -30,11 +30,8 @@
 
 .wall {
 	position: absolute;
-	top: 0;
-	right: 0;
-  	width: 100px;
-  	height: 50px;
-  	background-color: orange;
+	right: -500px;
+  	background-color: #000;
 }
 
 .headline{
