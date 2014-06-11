@@ -1,5 +1,5 @@
 function Network() {
-  this.socket = new WebSocket("ws://localhost:8080/");
+  this.socket = new WebSocket("ws://"+window.location.hostname+":8081/");
   this.id = Math.random().toString(36).substr(2, 9);
   this.other = {};
   var that = this;

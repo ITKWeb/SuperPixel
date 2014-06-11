@@ -1,5 +1,8 @@
 var WebSocketServer = require('ws').Server, 
-  wss = new WebSocketServer({port: 8080});
+  connect = require('connect'),
+  wss = new WebSocketServer({port: 8081});
+
+connect().use(connect.static(__dirname)).listen(8080);
 
 var room = {};
 

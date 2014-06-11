@@ -23,6 +23,7 @@
     "node": ">= 0.10.0"
   },
   "devDependencies": {
+    "connect": "^2.19.5",
     "ws": "^0.4.31"
   }
 }
