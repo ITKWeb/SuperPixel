@@ -20,4 +20,4 @@ Network.prototype.send = function send(method, room) {
   this.socket.send(JSON.stringify({method: method, room: room}));
 };
 
-var network = new Network();
+new Network();
