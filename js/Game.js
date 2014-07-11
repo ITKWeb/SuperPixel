@@ -161,6 +161,8 @@ Game.prototype.ShowHighscore = function ShowHighscore(highscore_rcv){
     for (i in highscore) {
         position++;
         list_score += '<p>#'+position+' '+highscore[i].id+' '+highscore[i].score+'</p>';
+        if (position == 5)
+            break;
     }
     this.nbPlayerHtmlElement.innerHTML = this.nbPlayer + '<span>players</span>' + list_score;
 }
