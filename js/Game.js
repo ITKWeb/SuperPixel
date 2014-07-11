@@ -49,7 +49,7 @@ Game.prototype.loop = function loop() {
     if(!that.bryanIsInTheKitchen){
       that.loop();
     }else{
-      that.gameOver();
+      that.dead();
     }
   });
 };

@@ -18,9 +18,7 @@
         <nav>
             <ul id="navigation">
                 <li><a href="game.html">1 Player</a></li>
-                <li><a href="#coop" class="multiplayerbutton">MultiPlayer - coop</a></li>
-                <li><a href="#survivor" class="multiplayerbutton">MultiPlayer - survivor</a></li>
-                <li><a href="#deathmatch" class="multiplayerbutton">MultiPlayer - deathmatch</a></li>
+                <li><a href="#" class="multiplayerbutton">MultiPlayer</a></li>
                 <li><a href="options.html">Options</a></li>
                 <li><a href="credits.html">Credits</a></li>
             </ul>
@@ -47,16 +45,15 @@
         var showPopupPseudo = function showPopupPseudo(evt) {
             var popup = document.getElementsByClassName("glass")[0];
             popup.style.display = 'block';
-            var typeGame = evt.target.href.split('#')[1];
             document.getElementById('playerTag').onchange = function() {
                 var playerTag = document.getElementById('playerTag').value;
                 var playerColor = document.getElementById('playerColor').value;
-                document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+typeGame+'&'+playerTag+'&'+playerColor;
+                document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+playerTag+'&'+playerColor;
             };
             document.getElementById('playerColor').onchange = function() {
                 var playerTag = document.getElementById('playerTag').value;
                 var playerColor = document.getElementById('playerColor').value;
-                document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+typeGame+'&'+playerTag+'&'+playerColor;
+                document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+playerTag+'&'+playerColor;
             };
         };
         for(var i=0, len = buttons.length; i<len; i++) {

@@ -42,8 +42,8 @@ function Network() {
       });
     } else if(cmd.method === 'newwall') {
       window.game.getMap().addWall(new Wall(cmd.opt));
-    } else if(cmd.method === 'dead') {
-      window.displayMessages.show('Je suis mort !', cmd.opt.playerTag, cmd.opt.playerColor);
+    } else if(cmd.method === 'dead' && cmd.opt.id !== that.id) {
+      window.displayMessages.show('Je suis mort !', that.other[cmd.opt.id].getTag(), that.other[cmd.opt.id].getColor());
     } else if(cmd.method === 'gameover') {
       window.game.gameOver();
     } else if(cmd.method === 'sharescore') {
