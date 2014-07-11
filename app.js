@@ -45,7 +45,17 @@ wss.on('connection', function(ws) {
             send(cmd, message);
             room[cmd.room] = [];
         } else if(cmd.method === 'sharescore'){
-            highscore.push({ id: cmd.opt.id, score: cmd.opt.score, color: cmd.opt.color});
+            var exist = false;
+            for (i=0;i<highscore.length;i++){
+                if (highscore[i].id === cmd.opt.id) {
+                   highscore[i].score = cmd.opt.score 
+                   exist = true;
+                   break;
+                }
+            }
+            if (!exist){
+                highscore.push({ id: cmd.opt.id, score: cmd.opt.score, color: cmd.opt.color});
+            }
 			ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: highscore}}));
     	} else {
     		send(cmd, message);
