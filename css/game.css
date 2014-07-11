@@ -14,6 +14,7 @@
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x;
     background-color: #fff;
     background-position: calc(100% + 90px) 100px, 50% 100px, calc(125% + 180px) 300px,calc(75% + 90px) 300px, 25% 300px, 0px bottom;
+    box-shadow: 0 300px 300px -300px rgba(0, 0, 0, 0.2) inset, 0 -300px 300px -300px rgba(0, 0, 0, 0.4) inset;
 
     -webkit-animation: clouds 20s linear infinite; /* Chrome, Safari, Opera */
     animation: clouds 20s linear infinite;
