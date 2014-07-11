@@ -40,6 +40,8 @@ wss.on('connection', function(ws) {
             ws.SPOptionsPlayer = cmd.opt;
     		room[cmd.room].push(ws);
         } else if(cmd.method === 'gameover') {
+            /* clear highscore when gameover */
+            highscore = [];
             send(cmd, message);
             room[cmd.room] = [];
         } else if(cmd.method === 'sharescore'){
