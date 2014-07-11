@@ -42,6 +42,7 @@ function Network() {
       });
     } else if(cmd.method === 'newwall') {
       window.game.getMap().addWall(new Wall(cmd.opt));
+      window.game.getMap().levelUp();
     } else if(cmd.method === 'dead' && cmd.opt.id !== that.id) {
       window.displayMessages.show('Je suis mort !', that.other[cmd.opt.id].getTag(), that.other[cmd.opt.id].getColor());
       that.other[cmd.opt.id].yourDead();
