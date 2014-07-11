@@ -9,6 +9,7 @@ function Network() {
   var that = this;
   this.socket.onopen = function(e){
     that.send('enter', 'room', {id: that.id, gameType: gameType, playerTag: playerTag, playerColor: playerColor});
+    window.displayMessages.show('Has started the pool party online', playerTag, playerColor);
     window.game.getPixel().onMove(function(x, y) {
       that.send('move', 'room', {id: that.id, x: x, y: y});
     });
@@ -23,7 +24,7 @@ function Network() {
     var cmd = JSON.parse(e.data);
     if(cmd.method === 'enter' && cmd.opt.id !== that.id) {
       that.other[cmd.opt.id] = window.game.addOtherPixel();
-      window.displayMessages.show('enter in game', cmd.opt.playerTag, cmd.opt.playerColor);
+      window.displayMessages.show('Has started the pool party online', cmd.opt.playerTag, cmd.opt.playerColor);
       window.game.nbPlayerPlusPlus();
     } else if(cmd.method === 'move') {
       if(that.other[cmd.opt.id] !== undefined) {
