@@ -19,6 +19,10 @@ function Network() {
     window.game.onGameOver(function() {
       that.send('gameover', 'room', {id: that.id});
     });
+    window.game.onShareScore(function(score){
+      console.log("send sharescore");
+      that.send('sharescore', 'room', {score: 12});
+    });
   };
   this.socket.onmessage = function(e) {
     var cmd = JSON.parse(e.data);

@@ -21,7 +21,7 @@ wss.on('connection', function(ws) {
     		room[cmd.room].forEach(function(player) {
 				ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: player.SPOptionsPlayer}));
     		});
-            console.log(room[cmd.room].length);
+            console.log(" players : "+room[cmd.room].length);
             if(room[cmd.room].length > 0) {//not first player
                 ws.send(JSON.stringify({method: 'notfirst', room: cmd.room}));
             } else {
@@ -32,6 +32,8 @@ wss.on('connection', function(ws) {
         } else if(cmd.method === 'gameover') {
             send(cmd, message);
             room[cmd.room] = [];
+        } else if(cmd.method === 'sharescore'){
+            console.log('sharescore');
     	} else {
     		send(cmd, message);
     	}

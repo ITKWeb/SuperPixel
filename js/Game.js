@@ -5,6 +5,7 @@ function Game() {
   this.score = 0;
   this.callbacksOnDead = [];
   this.callbacksGameOver = [];
+  this.callbacksOnShareScore = [];
   this.nbPlayer = 1;
 };
 
@@ -48,6 +49,7 @@ Game.prototype.loop = function loop() {
     }else{
       that.gameOver();
     }
+    that.fireOnGameOver(that.score);
   });
 };
 
@@ -57,6 +59,7 @@ Game.prototype.dead = function dead() {
 };
 
 Game.prototype.gameOver = function gameOver() {
+  console.trace();
   this.bryanIsInTheKitchen = true;
   var gameOverHeadlineView = new Headline("Game over<br />you won " + this.score + " $");
   clearInterval(this.scoreInterval);
@@ -138,5 +141,16 @@ window.onload = function() {
   window.game.start(document.getElementsByTagName('body')[0]);
   window.displayMessages = new DisplayMessages();
   window.displayMessages.start(document.getElementsByTagName('body')[0]);
+};
+
+Game.prototype.onShareScore = function onShareScore(cb) {
+    //console.log("onShareScore");
+    this.callbacksOnShareScore.push(cb)
+}
+
+Game.prototype.fireOnShareScore = function fireOnShareScore(score) {
+  for(var i=0, len=this.callbacksOnShareScore.length; i<len; i++) {
+    this.callbacksOnShareScore[i](score);
+  }
 };
 
