@@ -1,55 +1,62 @@
 
 <!doctype html>
 <html lang="fr"><head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="initial-scale=1.0">
-	<link rel="icon" type="image/png" href="images/SuperPixelFavicon.png" />
-	<link rel="stylesheet" type="text/css" href="css/steelshit.css" />
-	<script type="text/javascript" src="js/jscolor/jscolor.js"></script>
-	<title>Super Pixel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/SuperPixelFavicon.png" />
+    <link rel="stylesheet" type="text/css" href="css/steelshit.css" />
+    <script type="text/javascript" src="js/jscolor/jscolor.js"></script>
+    <title>Super Pixel</title>
 </head>
 <body>
-	
-	<header class="home">
-		<div id="homepixel"></div><br />
-		<a href="index.html" class="logo">Super&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixel<img src="images/SuperPixelLogo.png" /></a>
-	</header>
-	<section>
-		<nav>
-			<ul id="navigation">
-				<li><a href="game.html">1 Player</a></li>
-				<li><a href="game-multi.html#coop" class="multiplayerbutton">MultiPlayer - coop</a></li>
-				<li><a href="game-multi.html#survivor" class="multiplayerbutton">MultiPlayer - survivor</a></li>
-				<li><a href="game-multi.html#deathmatch" class="multiplayerbutton">MultiPlayer - deathmatch</a></li>
-				<li><a href="options.html">Options</a></li>
-				<li><a href="credits.html">Credits</a></li>
-			</ul>
-		</nav>
-	</section>
-	<div class="glass">
-		<div class="popup giveMeYourTag">
-			<div class="formLine">
-				<label for="playerTag">Super Pseudo :</label>
-				<input type="text" id="playerTag"><br />
-			</div>
-			<div class="formLine">
-				<label for="playerTag">Super Couleur :</label>
-				<input class="color">
-			</div>
-			<div class="formLine">
-				<a href="game.html" class="link">ok</a>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-	window.onload = function (){
-		    if(window.location.href.indexOf("github") > -1) {
-		       var buttons = document.getElementsByClassName("multiplayerbutton");
-		       for(var i=0, len = buttons.length; i<len; i++) {
-		       		buttons[i].classList.add("hidden");
-		       }
-		    }
-		};
-	</script>
+    
+    <header class="home">
+        <div id="homepixel"></div><br />
+        <a href="index.html" class="logo">Super&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pixel<img src="images/SuperPixelLogo.png" /></a>
+    </header>
+    <section>
+        <nav>
+            <ul id="navigation">
+                <li><a href="game.html">1 Player</a></li>
+                <li><a href="#coop" class="multiplayerbutton">MultiPlayer - coop</a></li>
+                <li><a href="#survivor" class="multiplayerbutton">MultiPlayer - survivor</a></li>
+                <li><a href="#deathmatch" class="multiplayerbutton">MultiPlayer - deathmatch</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="credits.html">Credits</a></li>
+            </ul>
+        </nav>
+    </section>
+    <div class="glass" style="display:none">
+        <div class="popup giveMeYourTag">
+            <div class="formLine">
+                <label for="playerTag">Super Pseudo :</label>
+                <input type="text" id="playerTag"><br />
+            </div>
+            <div class="formLine">
+                <label for="playerTag">Super Couleur :</label>
+                <input class="color">
+            </div>
+            <div class="formLine">
+                <a href="game.html" class="link">ok</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    window.onload = function (){
+        var buttons = document.getElementsByClassName("multiplayerbutton");
+        var showPopupPseudo = function showPopupPseudo(evt) {
+            console.log(evt.originalTarget);
+            var popup = document.getElementsByClassName("glass")[0];
+            popup.style.display = 'block';
+        };
+        for(var i=0, len = buttons.length; i<len; i++) {
+            if(window.location.href.indexOf("github") > -1) {
+                buttons[i].classList.add("hidden");
+            } else {
+                buttons[i].onclick = showPopupPseudo;
+            }
+        }
+    };
+    </script>
 </body>
 </html>
