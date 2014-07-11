@@ -33,11 +33,11 @@
                 <input type="text" id="playerTag"><br />
             </div>
             <div class="formLine">
-                <label for="playerTag">Super Couleur :</label>
-                <input class="color">
+                <label for="playerColor">Super Couleur :</label>
+                <input class="color" id="playerColor">
             </div>
             <div class="formLine">
-                <a href="game.html" class="link" id="okPopupGiveMeYourTag">ok</a>
+                <a href="" class="link" id="okPopupGiveMeYourTag">ok</a>
             </div>
         </div>
     </div>
@@ -48,7 +48,16 @@
             var popup = document.getElementsByClassName("glass")[0];
             popup.style.display = 'block';
             var typeGame = evt.target.href.split('#')[1];
-            document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+typeGame;
+            document.getElementById('playerTag').onchange = function() {
+                var playerTag = document.getElementById('playerTag').value;
+                var playerColor = document.getElementById('playerColor').value;
+                document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+typeGame+'&'+playerTag+'&'+playerColor;
+            };
+            document.getElementById('playerColor').onchange = function() {
+                var playerTag = document.getElementById('playerTag').value;
+                var playerColor = document.getElementById('playerColor').value;
+                document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+typeGame+'&'+playerTag+'&'+playerColor;
+            };
         };
         for(var i=0, len = buttons.length; i<len; i++) {
             if(window.location.href.indexOf("github") > -1) {

@@ -19,7 +19,7 @@ wss.on('connection', function(ws) {
     		room[cmd.room] = room[cmd.room] || [];
     		send(cmd, message);
     		room[cmd.room].forEach(function(player) {
-				ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {id: player.SPUniqueId}}));
+				ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: player.SPOptionsPlayer}));
     		});
             console.log(room[cmd.room].length);
             if(room[cmd.room].length > 0) {//not first player
@@ -27,7 +27,7 @@ wss.on('connection', function(ws) {
             } else {
                 ws.send(JSON.stringify({method: 'first', room: cmd.room}));
             }
-    		ws.SPUniqueId = cmd.opt.id;
+            ws.SPOptionsPlayer = cmd.opt;
     		room[cmd.room].push(ws);
         } else if(cmd.method === 'gameover') {
             send(cmd, message);

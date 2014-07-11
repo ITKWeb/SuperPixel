@@ -1,11 +1,15 @@
 function Network() {
   this.socket = new WebSocket("ws://"+window.location.hostname+":8081/");
   this.id = Math.random().toString(36).substr(2, 9);
-  var gameType = window.location.hash.split('#')[1];
+  var options = window.location.hash.split('#')[1].split('&');
+  var gameType = options[0];
+  var playerTag = options[1];
+  var playerColor = options[2];
+  console.log(options);
   this.other = {};
   var that = this;
   this.socket.onopen = function(e){
-    that.send('enter', 'room', {id: that.id, gameType: gameType});
+    that.send('enter', 'room', {id: that.id, gameType: gameType, playerTag: playerTag, playerColor: playerColor});
     window.game.getPixel().onMove(function(x, y) {
       that.send('move', 'room', {id: that.id, x: x, y: y});
     });
@@ -20,6 +24,7 @@ function Network() {
     var cmd = JSON.parse(e.data);
     if(cmd.method === 'enter' && cmd.opt.id !== that.id) {
       that.other[cmd.opt.id] = window.game.addOtherPixel();
+      console.log(cmd);
       window.game.nbPlayerPlusPlus();
     } else if(cmd.method === 'move') {
       if(that.other[cmd.opt.id] !== undefined) {
