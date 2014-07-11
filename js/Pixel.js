@@ -1,5 +1,4 @@
 function Pixel(isHuman, options) {
-	console.log(options);
 	if(options === undefined) {
 		var options = window.location.hash.split('#')[1].split('&');
 	  	var playerTag = options[0];
