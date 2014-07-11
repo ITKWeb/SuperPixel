@@ -32,9 +32,15 @@ Game.prototype.start = function start(htmlElement) {
     that.fireOnShareScore(that.score);
   }, 500);
   htmlElement.appendChild(this.scoreHtmlElement);
+
   this.nbPlayerHtmlElement = document.createElement('div');
-  this.nbPlayerHtmlElement.classList.add('score');
+  this.nbPlayerHtmlElement.classList.add('totalPlayers');
   htmlElement.appendChild(this.nbPlayerHtmlElement);
+
+  this.playerRankingHtmlElement = document.createElement('div');
+  this.playerRankingHtmlElement.classList.add('ranking');
+  htmlElement.appendChild(this.playerRankingHtmlElement);
+
 };
 
 Game.prototype.addOtherPixel = function addOtherPixel(options) {
@@ -164,11 +170,13 @@ Game.prototype.ShowHighscore = function ShowHighscore(highscore_rcv){
     highscore = highscore.reverse();
     for (i in highscore) {
         position++;
-        list_score += '<p style="color:#'+highscore[i].color+'">#'+position+' '+highscore[i].id.substring(0,15)+' '+highscore[i].score+'</p>';
+        list_score += '<div class="rank"><span class="rankRank">#'+position+'</span><span class="rankName" style="color:#'+highscore[i].color+'">'+highscore[i].id.substring(0,15)+'</span><span class="rankScore">'+highscore[i].score+'$</span></div>';
         if (position == 5)
             break;
     }
-    this.nbPlayerHtmlElement.innerHTML = this.nbPlayer + '<span>players</span>' + list_score;
+    list_score += '';
+  this.nbPlayerHtmlElement.innerHTML = this.nbPlayer + '<span>players</span>';
+  this.playerRankingHtmlElement.innerHTML = list_score;
 }
 
 function sortByKey(array, key) {

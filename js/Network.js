@@ -8,7 +8,7 @@ function Network() {
   var that = this;
   this.socket.onopen = function(e){
     that.send('enter', 'room', {id: that.id, playerTag: playerTag, playerColor: playerColor});
-    window.displayMessages.show('Has started the pool party online', playerTag, playerColor);
+    window.displayMessages.show('joined the game', playerTag, playerColor);
     window.game.getPixel().onMove(function(x, y) {
       that.send('move', 'room', {id: that.id, x: x, y: y});
     });
@@ -29,7 +29,7 @@ function Network() {
     var cmd = JSON.parse(e.data);
     if(cmd.method === 'enter' && cmd.opt.id !== that.id) {
       that.other[cmd.opt.id] = window.game.addOtherPixel({playerTag: cmd.opt.playerTag, playerColor: cmd.opt.playerColor});
-      window.displayMessages.show('Has started the pool party online', cmd.opt.playerTag, cmd.opt.playerColor);
+      window.displayMessages.show('joined the game', cmd.opt.playerTag, cmd.opt.playerColor);
       window.game.nbPlayerPlusPlus();
     } else if(cmd.method === 'move') {
       if(that.other[cmd.opt.id] !== undefined) {
@@ -47,7 +47,7 @@ function Network() {
       window.game.getMap().addWall(new Wall(cmd.opt));
       window.game.getMap().levelUp();
     } else if(cmd.method === 'dead' && cmd.opt.id !== that.id) {
-      window.displayMessages.show('Je suis mort !', that.other[cmd.opt.id].getTag(), that.other[cmd.opt.id].getColor());
+      window.displayMessages.show("s'est écrasé dans un mur...", that.other[cmd.opt.id].getTag(), that.other[cmd.opt.id].getColor());
       that.other[cmd.opt.id].yourDead();
     } else if(cmd.method === 'gameover') {
       window.game.gameOver(cmd.opt.winner);
