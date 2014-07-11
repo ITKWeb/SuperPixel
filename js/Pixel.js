@@ -17,7 +17,9 @@ function Pixel(isHuman, options) {
 	this.htmlElement.appendChild(slip);
 
 	tag = document.createElement('div');
-	tag.innerHTML = this.options.playerTag;
+
+	tag.innerHTML = this.options.playerTag.substring(0,15);
+
 	tag.classList.add('pixelTag');
 	tag.style.color = "#"+this.options.playerColor;
 	this.htmlElement.appendChild(tag);

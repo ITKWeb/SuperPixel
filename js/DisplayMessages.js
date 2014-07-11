@@ -20,7 +20,7 @@ DisplayMessages.prototype.start = function start(htmlElement) {
 DisplayMessages.prototype.show = function show(message, from, color) {
   var msg = document.createElement('div');
   msg.classList.add('msg');
-  msg.innerHTML = '[<span style="color:#'+color+';">'+from+'</span>] ' + message;
+  msg.innerHTML = '[<span style="color:#'+color+';">'+from.substring(0,15)+'</span>] ' + message;
   this.htmlElement.appendChild(msg);
   msg.scrollIntoView();
 };

@@ -164,7 +164,7 @@ Game.prototype.ShowHighscore = function ShowHighscore(highscore_rcv){
     highscore = highscore.reverse();
     for (i in highscore) {
         position++;
-        list_score += '<p style="color:#'+highscore[i].color+'">#'+position+' '+highscore[i].id+' '+highscore[i].score+'</p>';
+        list_score += '<p style="color:#'+highscore[i].color+'">#'+position+' '+highscore[i].id.substring(0,15)+' '+highscore[i].score+'</p>';
         if (position == 5)
             break;
     }
