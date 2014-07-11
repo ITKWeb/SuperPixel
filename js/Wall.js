@@ -9,18 +9,19 @@ function Wall(wall) {
     this.y =  Math.floor((Math.random() * 400));
     this.width = Math.floor((Math.random() * 100) + 50);
     this.height = Math.floor((Math.random() * 300) + 50);
+    this.yMove = Math.random() > 0.5 ? 1 : -1;
   } else {
     this.x = wall.x;
     this.y = wall.y;
     this.width = wall.w;
     this.height = wall.h;
+    this.yMove = wall.yMove;
   }
 
   this.htmlElement.style.width = this.width+"px";
   this.htmlElement.style.height = this.height+"px";
   this.htmlElement.style.top = this.y+"px";
-
-  this.yMove = Math.random() > 0.5 ? 1 : -1;
+  
 };
 
 Wall.prototype.start = function start(map) {
@@ -49,6 +50,7 @@ Wall.prototype.whereIsTheKitchen = function whereIsTheKitchen() {
     x : this.x,
     y : this.y,
     w : this.width,
-    h : this.height
+    h : this.height,
+    yMove: this.yMove
   };
 }
