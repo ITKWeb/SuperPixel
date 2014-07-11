@@ -8,9 +8,27 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: #fff;
 	cursor: none;
 	overflow: hidden;
+    background-image: url(../images/nuage.png), url(../images/nuage.png),url(../images/nuage.png),url(../images/nuage.png), url(../images/nuage.png), url(../images/town.png);
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x;
+    background-color: #fff;
+    background-position: calc(100% + 90px) 100px, 50% 100px, calc(125% + 180px) 300px,calc(75% + 90px) 300px, 25% 300px, 0px bottom;
+
+    -webkit-animation: clouds 20s linear infinite; /* Chrome, Safari, Opera */
+    animation: clouds 20s linear infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes clouds {
+    0% {background-position: calc(100% + 90px) 100px, 50% 100px, calc(125% + 180px) 300px, calc(75% + 90px) 300px, 25% 300px, 0px bottom}
+    100% {background-position: 50% 100px, calc(0% - 90px) 100px, calc(75% + 90px) 300px, 25% 300px, calc(-25% - 90px) 300px, -200px bottom}
+}
+
+/* Standard syntax */
+@keyframes clouds {
+    0% {background-position: calc(100% + 90px) 100px, 50% 100px, calc(125% + 180px) 300px, calc(75% + 90px) 300px, 25% 300px, 0px bottom}
+    100% {background-position: 50% 100px, calc(0% - 90px) 100px, calc(75% + 90px) 300px, 25% 300px, calc(-25% - 90px) 300px, -200px bottom}
 }
 
 .pixel {
