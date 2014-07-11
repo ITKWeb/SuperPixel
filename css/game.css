@@ -83,6 +83,30 @@
     background-color: #f00;
 }
 
+.moneyZone{
+    width: 50px;
+    height: 100%;
+    float: right;
+    background-color: rgba(215, 44, 44, 0.3);
+    text-align: center;
+    font-size: 40px;
+}
+
+.moneyZone span{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: auto;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform-origin:calc(100% + 30px) 75px; /* Chrome, Safari, Opera */
+    -webkit-transform-origin:calc(100% + 30px) 75px; /* Chrome, Safari, Opera */
+    text-align: center;
+}
+
 .wall {
 	position: absolute;
 	right: -500px;

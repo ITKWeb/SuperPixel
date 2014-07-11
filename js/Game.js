@@ -14,6 +14,8 @@ Game.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
   this.map = new Map();
   this.map.start(this.htmlElement);
+  this.moneyZone = new MoneyZone();
+  this.moneyZone.start(this.map);
   this.pixel = new Pixel(true);
   this.pixel.start(this.map);
   this.titre = new Headline ("START");
