@@ -25,6 +25,8 @@ Game.prototype.start = function start(htmlElement) {
   this.scoreInterval = setInterval(function() {
     that.score = that.score + 1 + (1 * that.pixel.getSoreFactor());
     that.scoreHtmlElement.innerHTML = that.score + '<span>$</span>';
+    /* share score */
+    that.fireOnShareScore(that.score);
   }, 500);
   htmlElement.appendChild(this.scoreHtmlElement);
   this.nbPlayerHtmlElement = document.createElement('div');
@@ -49,7 +51,6 @@ Game.prototype.loop = function loop() {
     }else{
       that.gameOver();
     }
-    that.fireOnGameOver(that.score);
   });
 };
 
@@ -59,7 +60,6 @@ Game.prototype.dead = function dead() {
 };
 
 Game.prototype.gameOver = function gameOver() {
-  console.trace();
   this.bryanIsInTheKitchen = true;
   var gameOverHeadlineView = new Headline("Game over<br />you won " + this.score + " $");
   clearInterval(this.scoreInterval);
@@ -154,3 +154,12 @@ Game.prototype.fireOnShareScore = function fireOnShareScore(score) {
   }
 };
 
+Game.prototype.ShowHighscore = function ShowHighscore(highscore){
+    list_score = '';
+    position = 0;
+    for (key in highscore) {
+        position++;
+        list_score += '<p>#'+position+' '+key+' '+highscore[key]+'</p>';
+    }
+    this.nbPlayerHtmlElement.innerHTML = this.nbPlayer + '<span>players</span>' + list_score;
+}

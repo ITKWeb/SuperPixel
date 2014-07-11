@@ -20,8 +20,7 @@ function Network() {
       that.send('gameover', 'room', {id: that.id});
     });
     window.game.onShareScore(function(score){
-      console.log("send sharescore");
-      that.send('sharescore', 'room', {score: 12});
+      that.send('sharescore', 'room', {id: that.id, score: score});
     });
   };
   this.socket.onmessage = function(e) {
@@ -48,6 +47,8 @@ function Network() {
       window.displayMessages.show('Je suis mort !', cmd.opt.playerTag, cmd.opt.playerColor);
     } else if(cmd.method === 'gameover') {
       window.game.gameOver();
+    } else if(cmd.method === 'sharescore') {
+      window.game.ShowHighscore(cmd.opt.highscore);
     }
   };
 };

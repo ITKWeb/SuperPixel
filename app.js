@@ -6,6 +6,8 @@ connect().use(connect.static(__dirname)).listen(8080);
 
 var room = {};
 
+var highscore = {};
+
 var send = function send(cmd, message) {
 	for(var i=0, len=room[cmd.room].length; i<len; i++) {
 		room[cmd.room][i].send(message);
@@ -33,7 +35,16 @@ wss.on('connection', function(ws) {
             send(cmd, message);
             room[cmd.room] = [];
         } else if(cmd.method === 'sharescore'){
-            console.log('sharescore');
+            var keys = [];
+            highscore[cmd.opt.id] = cmd.opt.score
+            for (var key in highscore) {
+                if (highscore.hasOwnProperty(key)){
+                    keys.push(highscore[key]);
+                }
+            }
+            keys.sort();
+            send(cmd, message);
+			ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: highscore}}));
     	} else {
     		send(cmd, message);
     	}
