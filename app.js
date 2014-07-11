@@ -38,6 +38,7 @@ wss.on('connection', function(ws) {
                 ws.send(JSON.stringify({method: 'first', room: cmd.room}));
             }
             ws.SPOptionsPlayer = cmd.opt;
+            ws.isDead = false;
     		room[cmd.room].push(ws);
         } else if(cmd.method === 'gameover') {
             /* clear highscore when gameover */
@@ -57,6 +58,22 @@ wss.on('connection', function(ws) {
                 highscore.push({ id: cmd.opt.id, score: cmd.opt.score, color: cmd.opt.color});
             }
 			ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: highscore}}));
+        } else if(cmd.method === 'dead'){
+            ws.isDead = true;
+            var nbAlive = 0;
+            var winner;
+            for(var nbPlayers=0, len=room[cmd.room].length; nbPlayers<len && nbAlive<2; nbPlayers++) {
+                if(room[cmd.room][nbPlayers].isDead === false) {
+                    nbAlive = nbAlive + 1;
+                    winner = room[cmd.room][nbPlayers].SPOptionsPlayer;
+                }
+            }
+            if(nbAlive === 1) {
+                highscore = [];
+                send({room: cmd.room}, JSON.stringify({method: 'gameover', room: cmd.room, opt: {winner: winner}}));
+                room[cmd.room] = [];
+            }
+            send(cmd, message);
     	} else {
     		send(cmd, message);
     	}

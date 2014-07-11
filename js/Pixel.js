@@ -1,4 +1,5 @@
 function Pixel(isHuman, options) {
+	console.log(options);
 	if(options === undefined) {
 		var options = window.location.hash.split('#')[1].split('&');
 	  	var playerTag = options[0];
@@ -13,13 +14,13 @@ function Pixel(isHuman, options) {
 
 	slip = document.createElement('div');
 	slip.classList.add('pixelSlip');
-	slip.style.borderColor = "#"+playerColor;
+	slip.style.borderColor = "#"+this.options.playerColor;
 	this.htmlElement.appendChild(slip);
 
 	tag = document.createElement('div');
-	tag.innerHTML = playerTag;
+	tag.innerHTML = this.options.playerTag;
 	tag.classList.add('pixelTag');
-	tag.style.color = "#"+playerColor;
+	tag.style.color = "#"+this.options.playerColor;
 	this.htmlElement.appendChild(tag);
 
 	this.isHuman = isHuman;
@@ -94,4 +95,8 @@ Pixel.prototype.getColor = function getSoreFactor() {
 
 Pixel.prototype.getTag = function getSoreFactor() {
 	return this.options.playerTag;
+};
+
+Pixel.prototype.yourDead = function() {
+	this.htmlElement.classList.add('dead');
 };

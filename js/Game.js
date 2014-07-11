@@ -7,6 +7,7 @@ function Game() {
   this.callbacksGameOver = [];
   this.callbacksOnShareScore = [];
   this.nbPlayer = 1;
+  this.isDead = false;
 };
 
 Game.prototype.start = function start(htmlElement) {
@@ -44,25 +45,26 @@ Game.prototype.loop = function loop() {
   var nb = 0;
   var that = this;
   window.requestAnimFrame(function() {
-    that.collision();
-    that.map.loop();
-    if(!that.bryanIsInTheKitchen){
-      that.loop();
-    }else{
+    if(that.bryanIsInTheKitchen === false && that.isDead === false) {
+      that.collision();
+    } else if(that.isDead === false) {
       that.dead();
     }
+    that.map.loop();
+    that.loop();
   });
 };
 
 Game.prototype.dead = function dead() {
+  this.isDead = true;
+  clearInterval(this.scoreInterval);
+  this.pixel.yourDead();
   this.fireOnDead();
-  this.gameOver();
 };
 
-Game.prototype.gameOver = function gameOver() {
+Game.prototype.gameOver = function gameOver(winner) {
   this.bryanIsInTheKitchen = true;
-  var gameOverHeadlineView = new Headline("Game over<br />you won " + this.score + " $");
-  clearInterval(this.scoreInterval);
+  var gameOverHeadlineView = new Headline("Winner is<br /> " + winner.playerTag + " !!");
   gameOverHeadlineView.start(this.map);
   this.fireOnGameOver();
   var gameOver = document.createElement('div');

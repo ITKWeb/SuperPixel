@@ -79,6 +79,10 @@
     opacity: 0.4;
 }
 
+.pixel.dead, .pixel.noHuman.dead {
+    background-color: #f00;
+}
+
 .wall {
 	position: absolute;
 	right: -500px;

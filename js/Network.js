@@ -44,8 +44,9 @@ function Network() {
       window.game.getMap().addWall(new Wall(cmd.opt));
     } else if(cmd.method === 'dead' && cmd.opt.id !== that.id) {
       window.displayMessages.show('Je suis mort !', that.other[cmd.opt.id].getTag(), that.other[cmd.opt.id].getColor());
+      that.other[cmd.opt.id].yourDead();
     } else if(cmd.method === 'gameover') {
-      window.game.gameOver();
+      window.game.gameOver(cmd.opt.winner);
     } else if(cmd.method === 'sharescore') {
       window.game.ShowHighscore(cmd.opt.highscore);
     }
