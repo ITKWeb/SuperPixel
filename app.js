@@ -60,7 +60,7 @@ wss.on('connection', function(ws) {
           if (!exist){
             highscore.push({ id: cmd.opt.id, score: cmd.opt.score, color: cmd.opt.color});
           }
-      ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: highscore}}));
+          ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: highscore}}));
         } else if(cmd.method === 'dead'){
           ws.isDead = true;
           var nbAlive = 0;
@@ -73,6 +73,7 @@ wss.on('connection', function(ws) {
           }
           if(nbAlive <= 1) {
             highscore = [];
+            winner = winner || {playerTag: 'you are solo dude !'};
             send({room: cmd.room}, JSON.stringify({method: 'gameover', room: cmd.room, opt: {winner: winner}}));
             room[cmd.room] = [];
           }

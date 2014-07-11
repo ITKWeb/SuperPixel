@@ -181,10 +181,17 @@
     position: absolute;
     left: 0;
     top: 500px;
-    width: auto;
+    width: 25%;
     height: 200px;
     font-size: 0.8em;
+    overflow: hidden;
 }
 .msg{
     padding:4px;
+}
+.displayMessagesInput {
+    position: absolute;
+    left: 0;
+    top: 700px;
+    width: 25%;
 }

@@ -21,6 +21,9 @@ function Network() {
     window.game.onShareScore(function(score){
       that.send('sharescore', 'room', {id: playerTag, score: score, color: playerColor});
     });
+    window.displayMessages.onSendMessage(function(message) {
+      that.send('message', 'room', {id: that.id, playerTag: playerTag, playerColor: playerColor, message: message});
+    });
   };
   this.socket.onmessage = function(e) {
     var cmd = JSON.parse(e.data);
@@ -50,6 +53,10 @@ function Network() {
       window.game.gameOver(cmd.opt.winner);
     } else if(cmd.method === 'sharescore') {
       window.game.ShowHighscore(cmd.opt.highscore);
+    } else if(cmd.method === 'message') {
+      var tag = cmd.opt.id !== that.id ? that.other[cmd.opt.id].getTag() : playerTag;
+      var color = cmd.opt.id !== that.id ? that.other[cmd.opt.id].getColor() : playerColor;
+      window.displayMessages.show(cmd.opt.message, tag, color);
     }
   };
 };
