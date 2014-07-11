@@ -14,6 +14,14 @@ var send = function send(cmd, message) {
 	}
 };
 
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
+
 wss.on('connection', function(ws) {
     ws.on('message', function(message) {
     	var cmd = JSON.parse(message);
@@ -35,16 +43,14 @@ wss.on('connection', function(ws) {
             send(cmd, message);
             room[cmd.room] = [];
         } else if(cmd.method === 'sharescore'){
-            var keys = [];
+            var send_highscore = []
             highscore[cmd.opt.id] = cmd.opt.score
-            for (var key in highscore) {
-                if (highscore.hasOwnProperty(key)){
-                    keys.push(highscore[key]);
-                }
+            for (key in highscore) {
+                send_highscore.push({id: key, score: highscore[key]});
             }
-            keys.sort();
-            send(cmd, message);
-			ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: highscore}}));
+            //send_highscore = sortByKey(send_highscore, 'score');
+
+			ws.send(JSON.stringify({method: cmd.method, room: cmd.room, opt: {highscore: send_highscore}}));
     	} else {
     		send(cmd, message);
     	}

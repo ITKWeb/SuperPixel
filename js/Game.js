@@ -144,7 +144,6 @@ window.onload = function() {
 };
 
 Game.prototype.onShareScore = function onShareScore(cb) {
-    //console.log("onShareScore");
     this.callbacksOnShareScore.push(cb)
 }
 
@@ -154,12 +153,21 @@ Game.prototype.fireOnShareScore = function fireOnShareScore(score) {
   }
 };
 
-Game.prototype.ShowHighscore = function ShowHighscore(highscore){
+Game.prototype.ShowHighscore = function ShowHighscore(highscore_rcv){
     list_score = '';
     position = 0;
-    for (key in highscore) {
+    var highscore = sortByKey(highscore_rcv, 'score');
+    highscore = highscore.reverse();
+    for (i in highscore) {
         position++;
-        list_score += '<p>#'+position+' '+key+' '+highscore[key]+'</p>';
+        list_score += '<p>#'+position+' '+highscore[i].id+' '+highscore[i].score+'</p>';
     }
     this.nbPlayerHtmlElement.innerHTML = this.nbPlayer + '<span>players</span>' + list_score;
+}
+
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
 }
