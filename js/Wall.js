@@ -4,6 +4,9 @@ function Wall(wall) {
   this.htmlElement = document.createElement('div');
   this.htmlElement.classList.add('wall');
 
+  this.speed_move_x = 1;
+  this.speed_move_y = 1;
+
   if(wall === undefined) {
     this.x = TAILLE_MAX_WIDTH + 100;
     this.y =  Math.floor((Math.random() * 400));
@@ -30,9 +33,9 @@ Wall.prototype.start = function start(map) {
 };
 
 Wall.prototype.loop = function loop() {
-  this.x = this.x - 1;
-  this.y = this.y - this.yMove;
-  if(this.x === (this.width * -1)) {
+  this.x = this.x - this.speed_move_x;
+  this.y = this.y - ( this.yMove * this.speed_move_y);
+  if(this.x <= (this.width * -1)) {
     this.map.removeChild(this.htmlElement, this);
   }
   if(this.y + this.height >= 500 && this.yMove === -1) {

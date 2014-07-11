@@ -5,6 +5,7 @@ function Map() {
   this.walls = [];
   this.callbacksOnWallAdded = [];
   this.nbLoop = 0;
+  this.level = 4;
 };
 
 Map.prototype.start = function start(htmlElement) {
@@ -24,38 +25,48 @@ Map.prototype.checkIntervalAndWall = function() {
     this.intervalWall = setInterval(function() {
       clearInterval(that.intervalWall);
       that.intervalWall = undefined;
-      if(Math.random() > 0.8) {
-        var gabarit = new Wall().whereIsTheKitchen();
-        gabarit.y = 0;
-        gabarit.height = 100;
-        that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
-        gabarit.y = 400;
-        gabarit.height = 50;
-        that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
-        gabarit.y = 80;
-        gabarit.height = 100;
-        that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
-      } else {
-        that.fireOnWallAdded(that.addWall(new Wall()));
-      }
+      if (that.walls.length <= 8){
+          if(Math.random() > 0.8) {
+            var gabarit = new Wall().whereIsTheKitchen();
+            gabarit.y = 0;
+            gabarit.height = 100;
+            that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+            gabarit.y = 400;
+            gabarit.height = 50;
+            that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+            gabarit.y = 80;
+            gabarit.height = 100;
+            that.fireOnWallAdded(that.addWall(new Wall(gabarit)));
+          } else {
+            that.fireOnWallAdded(that.addWall(new Wall()));
+          }
+        }
     }, Math.floor((Math.random() * (5000 - (0.1 * that.nbLoop))) + 500));
   }
 };
 
 Map.prototype.addWall = function addWall(wall) {
+      
+  wall.speed_move_y = this.level;
+  wall.speed_move_x = this.level;
+  
   wall.start(this);
   this.walls.push(wall);
   return wall;
 };
 
-Map.prototype.loop = function loop() {
+Map.prototype.loop = function loop(score) {
   this.nbLoop = this.nbLoop + 1;
   for(var i=0, len=this.elementsLoop.length; i<len; i++) {
     if(this.elementsLoop[i] !== undefined) {
       this.elementsLoop[i].loop();
     }
   }
-  this.checkIntervalAndWall();
+  this.checkIntervalAndWall(score);
+};
+
+Map.prototype.levelUp = function(level){
+    this.level++;
 };
 
 Map.prototype.addChild = function addChild(htmlElement, element) {
