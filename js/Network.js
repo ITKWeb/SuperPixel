@@ -19,7 +19,7 @@ function Network() {
       that.send('gameover', 'room', {id: that.id});
     });
     window.game.onShareScore(function(score){
-      that.send('sharescore', 'room', {id: playerTag, score: score});
+      that.send('sharescore', 'room', {id: playerTag, score: score, color: playerColor});
     });
   };
   this.socket.onmessage = function(e) {
