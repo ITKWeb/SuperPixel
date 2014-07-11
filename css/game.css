@@ -43,15 +43,26 @@
 	background-color: #000;
 	/*transition:left 50ms linear,top 50ms linear;*/
 }
-.pixel::before{
-    content: "";
-    position: absolute;
-    background:url(../images/SuperPixelFlying.gif);
-    top: -5px;
-    left: -19px;
-    width: 41px;
-    height: 12px;
-}
+    .pixel::before{
+        content: "";
+        position: absolute;
+        background:url(../images/SuperPixelFlying.gif);
+        top: -5px;
+        left: -19px;
+        width: 41px;
+        height: 12px;
+    }
+    .pixel::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 3px;
+        border-style: solid;
+        border-width: 4px 2px 3px 0;
+        border-color: red;
+    }
 
 
 .pixel.noHuman {
