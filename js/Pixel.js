@@ -10,6 +10,18 @@ function Pixel(isHuman, options) {
 	this.htmlElement = document.createElement('div');
 	this.htmlElement.id = "superpixel";
 	this.htmlElement.classList.add('pixel');
+
+	slip = document.createElement('div');
+	slip.classList.add('pixelSlip');
+	slip.style.borderColor = "#"+playerColor;
+	this.htmlElement.appendChild(slip);
+
+	tag = document.createElement('div');
+	tag.innerHTML = playerTag;
+	tag.classList.add('pixelTag');
+	tag.style.color = "#"+playerColor;
+	this.htmlElement.appendChild(tag);
+
 	this.isHuman = isHuman;
 
 	this.callbacksOnMove = [];
