@@ -10,14 +10,18 @@
 	height: 100%;
 	cursor: none;
 	overflow: hidden;
+    background-color: #fff;
+    /*
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
     background-image: url(../images/nuage.png), url(../images/nuage.png),url(../images/nuage.png),url(../images/nuage.png), url(../images/nuage.png), url(../images/town.png);
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x;
-    background-color: #fff;
     background-position: calc(100% + 90px) 100px, 50% 100px, calc(125% + 180px) 300px,calc(75% + 90px) 300px, 25% 300px, 0px bottom;
     box-shadow: 0 300px 300px -300px rgba(0, 0, 0, 0.2) inset, 0 -300px 300px -300px rgba(0, 0, 0, 0.4) inset;
 
-    -webkit-animation: clouds 20s linear infinite; /* Chrome, Safari, Opera */
+    -webkit-animation: clouds 20s linear infinite;
     animation: clouds 20s linear infinite;
+    */
 }
 
 /* Chrome, Safari, Opera */
@@ -73,6 +77,51 @@
 	animation: epilepsia 200ms infinite linear, appear 2s 1 linear;
 }
 
+/* Chrome, Safari, Opera */
+@-webkit-keyframes epilepsia {
+    0%   {color: red;}
+    24%   {color: red;}
+    25%  {color: yellow;}
+    49%  {color: yellow;}
+    50%  {color: blue;}
+    74%  {color: blue;}
+    75% {color: green;}
+    99% {color: green;}
+    100% {color: black;}
+}
+/* Standard syntax */
+@keyframes epilepsia {
+    0%   {color: red;}
+    24%   {color: red;}
+    25%  {color: yellow;}
+    49%  {color: yellow;}
+    50%  {color: blue;}
+    74%  {color: blue;}
+    75% {color: green;}
+    99% {color: green;}
+    100% {color: black;}
+} 
+/* Chrome, Safari, Opera */
+@-webkit-keyframes appear {
+    0%   {left: 150%;opacity: 0;}
+    5%  {opacity: 1;}
+    10%  {left: 45%;}
+    90% {left: 40%;opacity: 1;}
+    95% {opacity: 0;}
+    100% {left: -50%;}
+}
+/* Standard syntax */
+@keyframes appear {
+    0%   {left: 150%;opacity: 0;}
+    2%  {opacity: 1;}
+    5%  {left: 45%;}
+    95% {left: 40%;opacity: 1;}
+    98% {opacity: 0;}
+    100% {left: -50%;}
+}
+
+
+
 .score {
     font-size: 2em;
     text-align: center;
@@ -106,51 +155,11 @@
 .displayMessages {
     position: absolute;
     left: 0;
-    bottom: 0;
-    width: 99%;
+    top: 500px;
+    width: auto;
     height: 200px;
-    border-top: 1px solid #fff;
+    font-size: 0.8em;
 }
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes epilepsia {
-    0%   {color: red;}
-    24%   {color: red;}
-    25%  {color: yellow;}
-    49%  {color: yellow;}
-    50%  {color: blue;}
-    74%  {color: blue;}
-    75% {color: green;}
-    99% {color: green;}
-    100% {color: black;}
-}
-/* Standard syntax */
-@keyframes epilepsia {
-    0%   {color: red;}
-    24%   {color: red;}
-    25%  {color: yellow;}
-    49%  {color: yellow;}
-    50%  {color: blue;}
-    74%  {color: blue;}
-    75% {color: green;}
-    99% {color: green;}
-    100% {color: black;}
-} 
-/* Chrome, Safari, Opera */
-@-webkit-keyframes appear {
-    0%   {left: 150%;opacity: 0;}
-    5%	{opacity: 1;}
-    10%  {left: 45%;}
-    90% {left: 40%;opacity: 1;}
-    95%	{opacity: 0;}
-    100% {left: -50%;}
-}
-/* Standard syntax */
-@keyframes appear {
-    0%   {left: 150%;opacity: 0;}
-    2%	{opacity: 1;}
-    5%  {left: 45%;}
-    95% {left: 40%;opacity: 1;}
-    98%	{opacity: 0;}
-    100% {left: -50%;}
+.msg{
+    padding:4px;
 }
