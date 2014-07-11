@@ -103,6 +103,15 @@
     margin: 240px 20px 0;
 }
 
+.displayMessages {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 99%;
+    height: 200px;
+    border-top: 1px solid #fff;
+}
+
 /* Chrome, Safari, Opera */
 @-webkit-keyframes epilepsia {
     0%   {color: red;}

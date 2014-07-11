@@ -5,7 +5,6 @@ function Network() {
   var gameType = options[0];
   var playerTag = options[1];
   var playerColor = options[2];
-  console.log(options);
   this.other = {};
   var that = this;
   this.socket.onopen = function(e){
@@ -24,7 +23,7 @@ function Network() {
     var cmd = JSON.parse(e.data);
     if(cmd.method === 'enter' && cmd.opt.id !== that.id) {
       that.other[cmd.opt.id] = window.game.addOtherPixel();
-      console.log(cmd);
+      window.displayMessages.show('enter in game', cmd.opt.playerTag, cmd.opt.playerColor);
       window.game.nbPlayerPlusPlus();
     } else if(cmd.method === 'move') {
       if(that.other[cmd.opt.id] !== undefined) {
@@ -40,6 +39,8 @@ function Network() {
       });
     } else if(cmd.method === 'newwall') {
       window.game.getMap().addWall(new Wall(cmd.opt));
+    } else if(cmd.method === 'dead') {
+      window.displayMessages.show('Je suis mort !', cmd.opt.playerTag, cmd.opt.playerColor);
     } else if(cmd.method === 'gameover') {
       window.game.gameOver();
     }

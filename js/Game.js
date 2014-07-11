@@ -52,6 +52,7 @@ Game.prototype.loop = function loop() {
 };
 
 Game.prototype.dead = function dead() {
+  this.fireOnDead();
   this.gameOver();
 };
 
@@ -135,5 +136,7 @@ Game.prototype.nbPlayerPlusPlus = function nbPlayerPlusPlus() {
 window.onload = function() {
   window.game = new Game();
   window.game.start(document.getElementsByTagName('body')[0]);
+  window.displayMessages = new DisplayMessages();
+  window.displayMessages.start(document.getElementsByTagName('body')[0]);
 };
 
