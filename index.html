@@ -18,7 +18,9 @@
 		<nav>
 			<ul id="navigation">
 				<li><a href="game.html">1 Player</a></li>
-				<li><a href="game-multi.html" id="multiplayerbutton">MultiPlayer</a></li>
+				<li><a href="game-multi.html#coop" class="multiplayerbutton">MultiPlayer - coop</a></li>
+				<li><a href="game-multi.html#survivor" class="multiplayerbutton">MultiPlayer - survivor</a></li>
+				<li><a href="game-multi.html#deathmatch" class="multiplayerbutton">MultiPlayer - deathmatch</a></li>
 				<li><a href="options.html">Options</a></li>
 				<li><a href="credits.html">Credits</a></li>
 			</ul>
@@ -42,7 +44,10 @@
 	<script type="text/javascript">
 	window.onload = function (){
 		    if(window.location.href.indexOf("github") > -1) {
-		       document.getElementById("multiplayerbutton").classList.add("hidden");
+		       var buttons = document.getElementsByClassName("multiplayerbutton");
+		       for(var i=0, len = buttons.length; i<len; i++) {
+		       		buttons[i].classList.add("hidden");
+		       }
 		    }
 		};
 	</script>

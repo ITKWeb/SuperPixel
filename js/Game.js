@@ -3,6 +3,7 @@ function Game() {
   this.htmlElement.classList.add('game');
   this.bryanIsInTheKitchen = false;
   this.score = 0;
+  this.callbacksOnDead = [];
   this.callbacksGameOver = [];
   this.nbPlayer = 1;
 };
@@ -50,11 +51,15 @@ Game.prototype.loop = function loop() {
   });
 };
 
+Game.prototype.dead = function dead() {
+  this.gameOver();
+};
+
 Game.prototype.gameOver = function gameOver() {
   this.bryanIsInTheKitchen = true;
-  this.gameOver = new Headline("Game over<br />you won " + this.score + " $");
+  var gameOverHeadlineView = new Headline("Game over<br />you won " + this.score + " $");
   clearInterval(this.scoreInterval);
-  this.gameOver.start(this.map);
+  gameOverHeadlineView.start(this.map);
   this.fireOnGameOver();
   var gameOver = document.createElement('div');
   gameOver.classList.add('replayPopup');
@@ -100,6 +105,16 @@ Game.prototype.getPixel = function getPixel() {
 
 Game.prototype.getMap = function getMap() {
   return this.map;
+};
+
+Game.prototype.onDead = function onDead(cb) {
+  this.callbacksOnDead.push(cb);
+};
+
+Game.prototype.fireOnDead = function fireOnDead() {
+  for(var i=0, len=this.callbacksOnDead.length; i<len; i++) {
+    this.callbacksOnDead[i]();
+  }
 };
 
 Game.prototype.onGameOver = function onWallAdded(cb) {

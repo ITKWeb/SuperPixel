@@ -1,12 +1,16 @@
 function Network() {
   this.socket = new WebSocket("ws://"+window.location.hostname+":8081/");
   this.id = Math.random().toString(36).substr(2, 9);
+  var gameType = window.location.hash.split('#')[1];
   this.other = {};
   var that = this;
   this.socket.onopen = function(e){
-    that.send('enter', 'room', {id: that.id});
+    that.send('enter', 'room', {id: that.id, gameType: gameType});
     window.game.getPixel().onMove(function(x, y) {
       that.send('move', 'room', {id: that.id, x: x, y: y});
+    });
+    window.game.onDead(function() {
+      that.send('dead', 'room', {id: that.id});
     });
     window.game.onGameOver(function() {
       that.send('gameover', 'room', {id: that.id});
