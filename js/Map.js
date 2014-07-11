@@ -8,7 +8,12 @@ function Map() {
 };
 
 Map.prototype.start = function start(htmlElement) {
+  inGameBackground = document.createElement('div');
+  inGameBackground.classList.add('inGameBackground');
+  htmlElement.appendChild(inGameBackground);
+
   htmlElement.appendChild(this.htmlElement);
+
   this.nbLoop = 0;
   this.checkIntervalAndWall();
 };
