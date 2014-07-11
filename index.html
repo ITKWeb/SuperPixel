@@ -37,7 +37,7 @@
                 <input class="color">
             </div>
             <div class="formLine">
-                <a href="game.html" class="link">ok</a>
+                <a href="game.html" class="link" id="okPopupGiveMeYourTag">ok</a>
             </div>
         </div>
     </div>
@@ -45,9 +45,10 @@
     window.onload = function (){
         var buttons = document.getElementsByClassName("multiplayerbutton");
         var showPopupPseudo = function showPopupPseudo(evt) {
-            console.log(evt.originalTarget);
             var popup = document.getElementsByClassName("glass")[0];
             popup.style.display = 'block';
+            var typeGame = evt.target.href.split('#')[1];
+            document.getElementById('okPopupGiveMeYourTag').href = 'game-multi.html#'+typeGame;
         };
         for(var i=0, len = buttons.length; i<len; i++) {
             if(window.location.href.indexOf("github") > -1) {
