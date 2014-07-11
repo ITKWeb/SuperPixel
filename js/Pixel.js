@@ -1,4 +1,12 @@
-function Pixel(isHuman) {
+function Pixel(isHuman, options) {
+	if(options === undefined) {
+		var options = window.location.hash.split('#')[1].split('&');
+	  	var playerTag = options[0];
+	  	var playerColor = options[1];
+	  	this.options = {playerTag: playerTag, playerColor: playerColor};
+	} else {
+		this.options = options;
+	}
 	this.htmlElement = document.createElement('div');
 	this.htmlElement.id = "superpixel";
 	this.htmlElement.classList.add('pixel');
@@ -66,4 +74,12 @@ Pixel.prototype.fireOnMove = function fireOnMove(x, y) {
 
 Pixel.prototype.getSoreFactor = function getSoreFactor() {
 	return this.scoreFactor;
+};
+
+Pixel.prototype.getColor = function getSoreFactor() {
+	return this.options.playerColor;
+};
+
+Pixel.prototype.getTag = function getSoreFactor() {
+	return this.options.playerTag;
 };

@@ -13,7 +13,7 @@ Game.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.htmlElement);
   this.map = new Map();
   this.map.start(this.htmlElement);
-  this.pixel = new Pixel();
+  this.pixel = new Pixel(true);
   this.pixel.start(this.map);
   this.titre = new Headline ("START");
   this.titre.start(this.map);
@@ -34,8 +34,8 @@ Game.prototype.start = function start(htmlElement) {
   htmlElement.appendChild(this.nbPlayerHtmlElement);
 };
 
-Game.prototype.addOtherPixel = function addOtherPixel() {
-  var pixel = new Pixel(false);
+Game.prototype.addOtherPixel = function addOtherPixel(options) {
+  var pixel = new Pixel(false, options);
   pixel.start(this.map);
   return pixel;
 };
